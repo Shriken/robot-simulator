@@ -1,6 +1,6 @@
 {
-	"name": "search-simulator",
-	"description": "A minimal D application.",
+	"name": "robot-simulator",
+	"description": "Robot simulator for testing search and control algorithms",
 	"copyright": "Copyright © 2016, zane",
 	"authors": ["zane"],
 	"dependencies": {

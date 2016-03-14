@@ -5,4 +5,4 @@ __dummy.html
 *.obj
 
 dub.selections.json
-search-simulator
+robot-simulator

@@ -11,7 +11,7 @@ Simulator deals with model movement and physical interaction.
 
 ```D
 controller.update(
-	[sensor.get_output(simulation) for sensor in controller.sensors]
+	[sensor.getOutput(simulation) for sensor in controller.sensors]
 );
 ```
 

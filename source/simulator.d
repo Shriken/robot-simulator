@@ -1,13 +1,33 @@
 module simulator;
 
+import std.algorithm;
 import std.format;
+import std.math;
 
 import model;
+import types;
 
 class Simulator {
 	Model[] models;
 
+	private {
+		WorldDim bounds;
+		bool boundsDirty = true;
+	}
+	@property WorldDim worldBounds() {
+		if (boundsDirty) {
+			bounds = WorldDim(
+				models.map!(m => abs(m.pos.x)).reduce!max,
+				models.map!(m => abs(m.pos.y)).reduce!max
+			);
+			boundsDirty = false;
+		}
+
+		return bounds;
+	}
+
 	void tick() {
+		boundsDirty = true;
 		foreach (model; models) {
 			model.update();
 		}
