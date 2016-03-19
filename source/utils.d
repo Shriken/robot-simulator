@@ -16,10 +16,27 @@ T2 convertVector(T2, T1)(T1 vec) if (
 	}
 
 	foreach (i; vec.v.length..result.v.length) {
-		result[i] = 0.;
+		result[i] = 0;
 	}
 
 	return result;
+}
+
+bool segmentsIntersect(
+	WorldPos p1,
+	WorldPos p2,
+	WorldPos p3,
+	WorldPos p4
+) {
+	auto p = convertVector!vec3d(p1);
+	auto r = convertVector!vec3d(p2) - p;
+	auto q = convertVector!vec3d(p3);
+	auto s = convertVector!vec3d(p4) - q;
+
+	auto top = (q - p).cross(s);
+	auto bottom = r.cross(s);
+	auto t = top.z / bottom.z;
+	return 0 <= t && t <= 1;
 }
 
 WorldPos intersect(WorldPos p1, WorldPos p2, WorldPos p3, WorldPos p4) {
@@ -30,6 +47,6 @@ WorldPos intersect(WorldPos p1, WorldPos p2, WorldPos p3, WorldPos p4) {
 
 	auto top = (q - p).cross(s);
 	auto bottom = r.cross(s);
-	auto t = top.z - bottom.z;
+	auto t = top.z / bottom.z;
 	return convertVector!vec2d(p + t * r);
 }

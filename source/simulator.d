@@ -11,12 +11,12 @@ class Simulator {
 	Model[] models;
 
 	private {
-		WorldDim bounds;
+		double bounds;
 		bool boundsDirty = true;
 	}
-	@property WorldDim worldBounds() {
+	@property double worldBounds() {
 		if (boundsDirty) {
-			bounds = WorldDim(
+			bounds = max(
 				models.map!(m => abs(m.pos.x)).reduce!max,
 				models.map!(m => abs(m.pos.y)).reduce!max
 			);

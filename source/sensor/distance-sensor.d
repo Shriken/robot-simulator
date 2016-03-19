@@ -31,11 +31,22 @@ class DistanceSensor : Sensor {
 			size_t i = 0;
 			foreach (point; model.boundary) {
 				auto nextPoint = model.boundary[(i + 1) % $];
-
 				auto intersection = intersect(
 					point, nextPoint,
-					this.pos, this.pos + this.heading
+					pos, pos + simulator.worldBounds * rayDirection
 				);
+
+				if (
+					segmentsIntersect(
+						point, nextPoint,
+						pos, pos + simulator.worldBounds * rayDirection
+					)
+				) {
+					auto dist = (intersection - this.pos).length;
+					if (dist < closestSensed) {
+						closestSensed = dist;
+					}
+				}
 				i++;
 			}
 		}
