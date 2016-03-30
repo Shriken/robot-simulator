@@ -4,10 +4,14 @@ import model;
 import simulator;
 import types;
 
-class Sensor {
-	Model model;
-	WorldDim offset = WorldDim(0, 0);
-	double headingOffset = 0; // heading is model.heading + headingOffset
+abstract class Sensor {
+	protected {
+		Model model;
+		WorldDim offset = WorldDim(0, 0);
+
+		// heading is model.heading + headingOffset
+		double headingOffset = 0;
+	}
 
 	@property WorldPos pos() { return model.pos + offset; }
 	@property double heading() { return model.heading + headingOffset; }
