@@ -1,11 +1,14 @@
 module controller;
 
 import model;
+import sensor.sensor;
 
-class Controller {
+abstract class Controller {
 	Model model;
 
 	this(Model model) {
 		this.model = model;
 	}
+
+	abstract void update(Model model, double[] sensorOutput);
 }
