@@ -1,6 +1,6 @@
 module sensor.sensor;
 
-import model;
+import model.model;
 import simulator;
 import types;
 

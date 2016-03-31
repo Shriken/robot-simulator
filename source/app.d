@@ -1,6 +1,6 @@
 import std.stdio;
 
-import model;
+import model.model;
 import sensor.distance_sensor;
 import simulator;
 import types;

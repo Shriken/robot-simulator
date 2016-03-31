@@ -4,12 +4,19 @@ import std.algorithm;
 import std.format;
 import std.math;
 
-import model;
+import model.model;
+import robot;
 import types;
 
 class Simulator {
+	// simulation data
 	Model[] models;
+	Robot[] robots;
 
+	void addModel(Model model) { models ~= model; }
+	void addRobot(Robot robot) { robots ~= robot; }
+
+	// worldbounds is the furthest from the center in either axis
 	private {
 		double bounds;
 		bool boundsDirty = true;
@@ -31,10 +38,6 @@ class Simulator {
 		foreach (model; models) {
 			model.update();
 		}
-	}
-
-	void addModel(Model model) {
-		models ~= model;
 	}
 
 	void toString(void delegate(const(char)[]) sink) const {

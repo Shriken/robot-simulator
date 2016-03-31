@@ -2,7 +2,7 @@ module sensor.distance_sensor;
 
 import std.math;
 
-import model;
+import model.model;
 import sensor.sensor;
 import simulator;
 import types;
