@@ -4,9 +4,8 @@ import std.format;
 
 import types;
 
-class Model {
+abstract class Model {
 	WorldPos pos = WorldPos(0, 0);
-	WorldDim vel = WorldPos(0, 0);
 	double heading = 0;
 
 	WorldDim[] boundaryOffsets = [
@@ -22,20 +21,16 @@ class Model {
 
 	this(
 		WorldPos pos=WorldPos(0, 0),
-		WorldDim vel=WorldDim(0, 0),
 		double heading=0
 	) {
 		this.pos = pos;
-		this.vel = vel;
 		this.heading = heading;
 	}
 
-	void update() {
-		pos += vel;
-	}
+	abstract void update();
 
 	void toString(void delegate(const(char)[]) sink) const {
-		formattedWrite(sink, "{%s, %s, %s}", pos, vel, heading);
+		formattedWrite(sink, "{%s, %s}", pos, heading);
 	}
 }
 
